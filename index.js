@@ -13,8 +13,10 @@ restService.use(bodyParser.json());
 
 restService.post('/echo', function(req, res) {
     var speech = req.body.result && req.body.result.parameters && req.body.result.parameters.echoText ? req.body.result.parameters.echoText : "Seems like some problem. Speak again."
-    if(new RegExp('slide').test(speech)){
+    if(new RegExp('slide').test(speech)||new RegExp('ppt').test(speech)){
       speech = 'opening slides...';
+    }else if (new RegExp('next').test(speech)) {
+      speech = 'moving to the next page...';
     }
     return res.json({
         speech: speech,
