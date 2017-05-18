@@ -1,14 +1,15 @@
 {
   "name": "webhook-echo-sample",
   "version": "1.0.0",
-  "description": "Webhook echo sample",
+  "description": "Webhook presentation pro",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
-  "author": "Sunil Syal",
+  "author": "nathan huang",
   "dependencies": {
     "body-parser": "^1.15.0",
-    "express": "^4.13.4"
+    "express": "^4.13.4",
+    "slideshow": "^1.0.0"
   }
 }
