@@ -4,30 +4,29 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const socketIO = require('socket.io');
-const PORT = process.env.PORT || 3000;
 
 var restService = express();
-var server = express()
-  .listen(PORT, () => console.log(`Listening on ${ PORT }`));
+restService.use(bodyParser.json());
 restService.use(bodyParser.urlencoded({
     extended: true
 }));
+const server = restService.listen((process.env.PORT || 8000), function() {
+    console.log("Server up and listening");
+});
+
 var io = socketIO(server);
+
 io.on('connection', (socket) => {
   console.log('Client connected');
   socket.on('disconnect', () => console.log('Client disconnected'));
 });
 
-restService.use(bodyParser.json());
+
 
 restService.post('/echo', function(req, res) {
     var speech = req.body.result && req.body.result.parameters && req.body.result.parameters.echoText ? req.body.result.parameters.echoText : "Seems like some problem. Speak again."
     if(new RegExp('slide').test(speech)||new RegExp('ppt').test(speech)){
       speech = 'opening slides...';
-
-
-
-
     }else if (new RegExp('next').test(speech)) {
       speech = 'moving to the next page...';
     }
@@ -90,12 +89,4 @@ restService.post('/slack-test', function(req, res) {
             "slack": slack_message
         }
     });
-});
-
-
-
-
-
-restService.listen((process.env.PORT || 8000), function() {
-    console.log("Server up and listening");
 });
