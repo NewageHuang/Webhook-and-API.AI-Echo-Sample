@@ -18,6 +18,17 @@ restService.post('/echo', function(req, res) {
     var speech = req.body.result && req.body.result.parameters && req.body.result.parameters.echoText ? req.body.result.parameters.echoText : "Seems like some problem. Speak again."
     if(new RegExp('slide').test(speech)||new RegExp('ppt').test(speech)){
       speech = 'opening slides...';
+
+      var server = express()
+        .listen(PORT, () => console.log(`Listening on ${ PORT }`));
+
+      var io = socketIO(server);
+      io.on('connection', (socket) => {
+        console.log('Client connected');
+        socket.on('disconnect', () => console.log('Client disconnected'));
+      });
+
+      
     }else if (new RegExp('next').test(speech)) {
       speech = 'moving to the next page...';
     }
@@ -82,15 +93,6 @@ restService.post('/slack-test', function(req, res) {
     });
 });
 
-
-var server = express()
-  .listen(PORT, () => console.log(`Listening on ${ PORT }`));
-
-var io = socketIO(server);
-io.on('connection', (socket) => {
-  console.log('Client connected');
-  socket.on('disconnect', () => console.log('Client disconnected'));
-});
 
 //
 //
