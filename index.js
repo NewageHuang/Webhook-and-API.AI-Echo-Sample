@@ -6,15 +6,6 @@ const bodyParser = require('body-parser');
 const socketIO = require('socket.io');
 const PORT = process.env.PORT || 8000;
 
-var server = express()
-  .listen(PORT, () => console.log(`Listening on ${ PORT }`));
-
-var io = socketIO(server);
-io.on('connection', (socket) => {
-  console.log('Client connected');
-  socket.on('disconnect', () => console.log('Client disconnected'));
-});
-
 var restService = express();
 
 restService.use(bodyParser.urlencoded({
@@ -91,7 +82,17 @@ restService.post('/slack-test', function(req, res) {
     });
 });
 
-// 
+
+var server = express()
+  .listen(PORT, () => console.log(`Listening on ${ PORT }`));
+
+var io = socketIO(server);
+io.on('connection', (socket) => {
+  console.log('Client connected');
+  socket.on('disconnect', () => console.log('Client disconnected'));
+});
+
+//
 //
 //
 // restService.listen((process.env.PORT || 8000), function() {
