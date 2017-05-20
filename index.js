@@ -4,7 +4,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const socketIO = require('socket.io');
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 3000;
 
 var restService = express();
 
@@ -28,7 +28,7 @@ restService.post('/echo', function(req, res) {
         socket.on('disconnect', () => console.log('Client disconnected'));
       });
 
-      
+
     }else if (new RegExp('next').test(speech)) {
       speech = 'moving to the next page...';
     }
@@ -94,9 +94,9 @@ restService.post('/slack-test', function(req, res) {
 });
 
 
-//
-//
-//
-// restService.listen((process.env.PORT || 8000), function() {
-//     console.log("Server up and listening");
-// });
+
+
+
+restService.listen((process.env.PORT || 8000), function() {
+    console.log("Server up and listening");
+});
