@@ -7,10 +7,16 @@ const socketIO = require('socket.io');
 const PORT = process.env.PORT || 3000;
 
 var restService = express();
-
+var server = express()
+  .listen(PORT, () => console.log(`Listening on ${ PORT }`));
 restService.use(bodyParser.urlencoded({
     extended: true
 }));
+var io = socketIO(server);
+io.on('connection', (socket) => {
+  console.log('Client connected');
+  socket.on('disconnect', () => console.log('Client disconnected'));
+});
 
 restService.use(bodyParser.json());
 
@@ -19,14 +25,7 @@ restService.post('/echo', function(req, res) {
     if(new RegExp('slide').test(speech)||new RegExp('ppt').test(speech)){
       speech = 'opening slides...';
 
-      var server = express()
-        .listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
-      var io = socketIO(server);
-      io.on('connection', (socket) => {
-        console.log('Client connected');
-        socket.on('disconnect', () => console.log('Client disconnected'));
-      });
 
 
     }else if (new RegExp('next').test(speech)) {
