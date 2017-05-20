@@ -1,7 +1,19 @@
 'use strict';
 
+const http    = require('http');
 const express = require('express');
 const bodyParser = require('body-parser');
+const socketIO = require('socket.io');
+
+
+const PORT = process.env.PORT || 3000;
+const app = new http.Server();
+app.listen(PORT);
+const io = socketIO(app);
+io.on('connection', (socket) => {
+  console.log('Client connected');
+  socket.on('disconnect', () => console.log('Client disconnected'));
+});
 
 const restService = express();
 
