@@ -1,21 +1,21 @@
 'use strict';
 
-const http    = require('http');
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const socketIO = require('socket.io');
+const PORT = process.env.PORT || 8000;
 
+var server = express()
+  .listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
-const PORT = process.env.PORT || 3000;
-const app = new http.Server();
-app.listen(PORT);
-const io = socketIO(app);
+var io = socketIO(server);
 io.on('connection', (socket) => {
   console.log('Client connected');
   socket.on('disconnect', () => console.log('Client disconnected'));
 });
 
-const restService = express();
+var restService = express();
 
 restService.use(bodyParser.urlencoded({
     extended: true
@@ -91,9 +91,9 @@ restService.post('/slack-test', function(req, res) {
     });
 });
 
-
-
-
-restService.listen((process.env.PORT || 8000), function() {
-    console.log("Server up and listening");
-});
+// 
+//
+//
+// restService.listen((process.env.PORT || 8000), function() {
+//     console.log("Server up and listening");
+// });
