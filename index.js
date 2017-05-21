@@ -26,10 +26,14 @@ io.on('connection', (socket) => {
 restService.post('/echo', function(req, res) {
     var speech = req.body.result && req.body.result.parameters && req.body.result.parameters.echoText ? req.body.result.parameters.echoText : "Seems like some problem. Speak again."
     if(new RegExp('slide').test(speech)||new RegExp('ppt').test(speech)){
-      speech = 'opening slides...';
-      io.emit('receiveaction', new Date().toTimeString());
+      speech = 'opening the slides...';
+      io.emit('openslide', new Date().toTimeString());
     }else if (new RegExp('next').test(speech)) {
-      speech = 'moving to the next page...';
+      speech = 'here is the next page...';
+      io.emit('nextpage', new Date().toTimeString());
+    }else if (new RegExp('back').test(speech)) {
+      speech = 'here you go';
+      io.emit('back', new Date().toTimeString());
     }
     return res.json({
         speech: speech,
