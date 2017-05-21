@@ -14,7 +14,7 @@ const server = restService.listen((process.env.PORT || 8000), function() {
     console.log("Server up and listening");
 });
 
-var io = socketIO(server);
+const io = socketIO(server);
 
 io.on('connection', (socket) => {
   console.log('Client connected');
@@ -27,6 +27,7 @@ restService.post('/echo', function(req, res) {
     var speech = req.body.result && req.body.result.parameters && req.body.result.parameters.echoText ? req.body.result.parameters.echoText : "Seems like some problem. Speak again."
     if(new RegExp('slide').test(speech)||new RegExp('ppt').test(speech)){
       speech = 'opening slides...';
+      io.emit('receiveaction', new Date().toTimeString());
     }else if (new RegExp('next').test(speech)) {
       speech = 'moving to the next page...';
     }
