@@ -31,7 +31,7 @@ restService.post('/echo', function(req, res) {
     }else if (new RegExp('next').test(speech)) {
       speech = 'here is the next page...';
       io.emit('nextpage', new Date().toTimeString());
-    }else if (new RegExp('back').test(speech)) {
+    }else if (new RegExp('back').test(speech) || new RegExp('previous').test(speech)|| new RegExp('last page').test(speech)) {
       speech = 'here you go';
       io.emit('back', new Date().toTimeString());
     }
