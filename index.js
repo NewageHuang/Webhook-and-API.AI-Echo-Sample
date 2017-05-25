@@ -50,11 +50,14 @@ restService.post('/echo', function(req, res) {
       //     console.log('twilio message error:'+err+' message id:'+message);
       // });
       client.messages.create({
-          body: 'Hello from Google Home',
-          to: '+16467523706',  // Text this number
-          from: '+16467523706' // From a valid Twilio number
-      })
-      .then((message) => console.log('twilio message: '+message.sid));
+          to: "+16467523706",
+          from: "+16467523706",
+          body: "Hello from Google Home!",
+          mediaUrl: "https://c1.staticflickr.com/3/2899/14341091933_1e92e62d12_b.jpg",
+      }, function(err, message) {
+          console.log(Object.keys(err));
+          console.log(message.sid);
+      });
       speech = 'messages sent';
       io.emit('message', new Date().toTimeString());
     }
