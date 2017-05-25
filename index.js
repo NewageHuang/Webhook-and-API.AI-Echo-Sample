@@ -47,7 +47,7 @@ restService.post('/echo', function(req, res) {
           body: "Hello from Google Home!",
           mediaUrl: "https://c1.staticflickr.com/3/2899/14341091933_1e92e62d12_b.jpg",
       }, function(err, message) {
-          console.log('twilio message error:'+err+' message id:'+message.sid);
+          console.log('twilio message error:'+err+' message id:'+message);
       });
       speech = 'messages sent';
       io.emit('message', new Date().toTimeString());
