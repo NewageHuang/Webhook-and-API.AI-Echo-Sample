@@ -56,7 +56,9 @@ restService.post('/echo', function(req, res) {
           mediaUrl: "https://c1.staticflickr.com/3/2899/14341091933_1e92e62d12_b.jpg",
       }, function(err, message) {
           console.log(Object.keys(err));
-          console.log(message.sid);
+          //console.log(message.sid);
+          console.log('twilio message '+err.message);
+          console.log('twilio message '+err.code);
       });
       speech = 'messages sent';
       io.emit('message', new Date().toTimeString());
