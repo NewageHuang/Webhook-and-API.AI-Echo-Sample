@@ -6,8 +6,8 @@ const bodyParser = require('body-parser');
 const socketIO = require('socket.io');
 var twilio = require('twilio');
 
-var accountSid = 'AC74c1099dae68f12dfe05ef39b4374319'; // Your Account SID from www.twilio.com/console
-var authToken = '0677d40914964d98546aefe5c8b4c13e';   // Your Auth Token from www.twilio.com/console
+var accountSid = 'ACb733a5659bcb41e964d2a321d44e14b5'; // Your Account SID from www.twilio.com/console
+var authToken = '7e61cf961237b75d60e752a4ccc52b2b';   // Your Auth Token from www.twilio.com/console
 var twilio = require('twilio');
 var client = new twilio(accountSid, authToken);
 
