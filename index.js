@@ -50,8 +50,8 @@ restService.post('/echo', function(req, res) {
       //     console.log('twilio message error:'+err+' message id:'+message);
       // });
       client.messages.create({
-          to: "+16467523706",
-          from: "+16467523706",
+          to: "6467523706",
+          from: "6467523706",
           body: "Hello from Google Home!",
           mediaUrl: "https://c1.staticflickr.com/3/2899/14341091933_1e92e62d12_b.jpg",
       }, function(err, message) {
