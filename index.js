@@ -6,8 +6,8 @@ const bodyParser = require('body-parser');
 const socketIO = require('socket.io');
 var twilio = require('twilio');
 
-var accountSid = 'ACb733a5659bcb41e964d2a321d44e14b5'; // Your Account SID from www.twilio.com/console
-var authToken = '7e61cf961237b75d60e752a4ccc52b2b';   // Your Auth Token from www.twilio.com/console
+var accountSid = 'AC9981003fed30478b1116c026431e8798'; // Your Account SID from www.twilio.com/console
+var authToken = '9db92b414e3524092157cc0a88b53f2a';   // Your Auth Token from www.twilio.com/console
 var twilio = require('twilio');
 var client = new twilio(accountSid, authToken);
 
@@ -51,7 +51,7 @@ restService.post('/echo', function(req, res) {
       // });
       client.messages.create({
           to: "+16467523706",
-          from: "+15005550006",
+          from: "+18057197602",
           body: "Hello from Google Home!",
           mediaUrl: "https://c1.staticflickr.com/3/2899/14341091933_1e92e62d12_b.jpg",
       }, function(err, message) {
