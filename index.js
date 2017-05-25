@@ -4,6 +4,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const socketIO = require('socket.io');
+var twilio = require('twilio');
+
+var accountSid = 'ACb733a5659bcb41e964d2a321d44e14b5'; // Your Account SID from www.twilio.com/console
+var authToken = '7e61cf961237b75d60e752a4ccc52b2b';   // Your Auth Token from www.twilio.com/console
+var twilio = require('twilio');
+var client = new twilio(accountSid, authToken);
 
 var restService = express();
 restService.use(bodyParser.json());
@@ -34,6 +40,15 @@ restService.post('/echo', function(req, res) {
     }else if (new RegExp('back').test(speech) || new RegExp('previous').test(speech)|| new RegExp('last page').test(speech)) {
       speech = 'here you go';
       io.emit('back', new Date().toTimeString());
+    }else if (new RegExp('message').test(speech)) {
+      client.messages.create({
+          body: 'Hello from Google Home!',
+          to: '+16467523706',  // Text this number
+          from: '+16467523706' // From a valid Twilio number
+      })
+      .then((message) => console.log(message.sid));
+      speech = 'messages sent';
+      io.emit('message', new Date().toTimeString());
     }
     return res.json({
         speech: speech,
