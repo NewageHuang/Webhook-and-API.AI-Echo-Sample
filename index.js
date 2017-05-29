@@ -72,44 +72,44 @@ io.on('connection', (socket) => {
 
 
 restService.post('/open', function(req, res) {
-    var speech = req.body.result && req.body.result.parameters && req.body.result.parameters.open ? req.body.result.parameters.open : "Seems like some problem. Speak again."
-    speech = 'opening the slides...';
+    //var speech = req.body.result && req.body.result.parameters && req.body.result.parameters.open ? req.body.result.parameters.open : "Seems like some problem. Speak again."
+    var speech_open = 'okay...opening the slides...';
     io.emit('openslide', new Date().toTimeString());
 
     return res.json({
-        speech: speech,
-        displayText: speech,
+        speech: speech_open,
+        displayText: speech_open,
         source: 'webhook-echo-sample'
     });
 });
 
 restService.post('/next', function(req, res) {
-    var speech = req.body.result && req.body.result.parameters && req.body.result.parameters.next ? req.body.result.parameters.next : "Seems like some problem. Speak again."
-    speech = 'here is the next page...';
+    //var speech = req.body.result && req.body.result.parameters && req.body.result.parameters.next ? req.body.result.parameters.next : "Seems like some problem. Speak again."
+    var speech_next = 'okay...here is the next page...';
     io.emit('nextpage', new Date().toTimeString());
 
     return res.json({
-        speech: speech,
-        displayText: speech,
+        speech: speech_next,
+        displayText: speech_next,
         source: 'webhook-echo-sample'
     });
 });
 
 restService.post('/back', function(req, res) {
-    var speech = req.body.result && req.body.result.parameters && req.body.result.parameters.back ? req.body.result.parameters.back : "Seems like some problem. Speak again."
-    speech = 'here you go';
+    //var speech = req.body.result && req.body.result.parameters && req.body.result.parameters.back ? req.body.result.parameters.back : "Seems like some problem. Speak again."
+    var speech_back = 'here you go';
     io.emit('back', new Date().toTimeString());
 
     return res.json({
-        speech: speech,
-        displayText: speech,
+        speech: speech_back,
+        displayText: speech_back,
         source: 'webhook-echo-sample'
     });
 });
 
 restService.post('/message', function(req, res) {
-    var speech = req.body.result && req.body.result.parameters && req.body.result.parameters.message ? req.body.result.parameters.message : "Seems like some problem. Speak again."
-    speech = 'messages sent';
+    //var speech = req.body.result && req.body.result.parameters && req.body.result.parameters.message ? req.body.result.parameters.message : "Seems like some problem. Speak again."
+    var speech_msg = 'messages sent';
     io.emit('message', new Date().toTimeString());
 
     client.messages.create({
@@ -124,8 +124,8 @@ restService.post('/message', function(req, res) {
     });
 
     return res.json({
-        speech: speech,
-        displayText: speech,
+        speech: speech_msg,
+        displayText: speech_msg,
         source: 'webhook-echo-sample'
     });
 });
