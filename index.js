@@ -72,7 +72,7 @@ io.on('connection', (socket) => {
 
 
 restService.post('/open', function(req, res) {
-    var speech = req.body.result && req.body.result.parameters && req.body.result.parameters.echoText ? req.body.result.parameters.echoText : "Seems like some problem. Speak again."
+    var speech = req.body.result && req.body.result.parameters && req.body.result.parameters.open ? req.body.result.parameters.open : "Seems like some problem. Speak again."
     speech = 'opening the slides...';
     io.emit('openslide', new Date().toTimeString());
 
@@ -84,7 +84,7 @@ restService.post('/open', function(req, res) {
 });
 
 restService.post('/next', function(req, res) {
-    var speech = req.body.result && req.body.result.parameters && req.body.result.parameters.echoText ? req.body.result.parameters.echoText : "Seems like some problem. Speak again."
+    var speech = req.body.result && req.body.result.parameters && req.body.result.parameters.next ? req.body.result.parameters.next : "Seems like some problem. Speak again."
     speech = 'here is the next page...';
     io.emit('nextpage', new Date().toTimeString());
 
@@ -96,7 +96,7 @@ restService.post('/next', function(req, res) {
 });
 
 restService.post('/back', function(req, res) {
-    var speech = req.body.result && req.body.result.parameters && req.body.result.parameters.echoText ? req.body.result.parameters.echoText : "Seems like some problem. Speak again."
+    var speech = req.body.result && req.body.result.parameters && req.body.result.parameters.back ? req.body.result.parameters.back : "Seems like some problem. Speak again."
     speech = 'here you go';
     io.emit('back', new Date().toTimeString());
 
@@ -108,7 +108,7 @@ restService.post('/back', function(req, res) {
 });
 
 restService.post('/message', function(req, res) {
-    var speech = req.body.result && req.body.result.parameters && req.body.result.parameters.echoText ? req.body.result.parameters.echoText : "Seems like some problem. Speak again."
+    var speech = req.body.result && req.body.result.parameters && req.body.result.parameters.message ? req.body.result.parameters.message : "Seems like some problem. Speak again."
     speech = 'messages sent';
     io.emit('message', new Date().toTimeString());
 
